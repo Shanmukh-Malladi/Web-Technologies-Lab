@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+
+<head>
+    
+    <title>HTML5 Audio and Video</title>
+    
+</head>
+<body>
+
+    <div class="media-container">
+        <h1>My Video Player</h1>
+        
+        <video id="myVideo" width="400">
+            <source src="https://res.cloudinary.com/dn9txvirj/video/upload/Official_WhistlePodu_Anthem_IPL_2025_Chennai_Super_Kings_zq54dv.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        
+        <div class="controls">
+            <button onclick="vidPlay()">Play</button>
+            <button onclick="vidPause()">Pause</button>
+            <button onclick="vidVolUp()">Vol +</button>
+            <button onclick="vidVolDown()">Vol -</button>
+        </div>
+        
+        <p>Current Time: <span id="vidTime">0.00</span> seconds</p>
+    </div>
+
+    <hr>
+
+    <div class="media-container">
+        <h1>My Audio Player</h1>
+        
+        <audio id="myAudio">
+            <source src="http://commondatastorage.googleapis.com/codeskulptor-demos/pyman_assets/ateapill.ogg" type="audio/ogg">
+        </audio>
+
+        <div class="controls">
+            <button onclick="audPlay()">Play</button>
+            <button onclick="audPause()">Pause</button>
+            <button onclick="audVolUp()">Vol +</button>
+            <button onclick="audVolDown()">Vol -</button>
+        </div>
+
+        <p>Current Time: <span id="audTime">0.00</span> seconds</p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+<head>
+
+    <title>Advanced LocalStorage User Management System</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <div class="container">
+        <div class="form-card">
+            <h2>User Registration</h2>
+            <form id="registrationForm">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" placeholder="John Doe" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" placeholder="john@example.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="mobile">Mobile Number</label>
+                    <input type="number" id="mobile" placeholder="9876543210" required>
+                    <small>Must be exactly 10 digits</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="******" required>
+                    <small>Minimum 6 characters</small>
+                </div>
+
+                <button type="submit" class="btn-submit">Register User</button>
+            </form>
+        </div>
+
+        <div class="table-card">
+            <div class="table-header">
+                <h2>Registered Users</h2>
+                <button id="clearAllBtn" class="btn-clear">Clear All Users</button>
+            </div>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Mobile</th>
+                        <th>Password</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="userTableBody">
+                    </tbody>
+            </table>
+            <p id="noDataMessage" style="text-align:center; display:none; margin-top:10px;">No registered users found.</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

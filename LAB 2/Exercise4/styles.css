@@ -1,0 +1,52 @@
+/* Basic font for readability */
+body {
+    font-family: sans-serif;
+    padding: 20px;
+}
+
+/* Parent container to put Form and Table side-by-side */
+.container {
+    display: flex;
+    gap: 50px;          /* Space between form and table */
+    align-items: flex-start; /* Aligns them to the top */
+}
+
+/* Give the form and table sections equal width */
+.form-card, .table-card {
+    flex: 1;
+}
+
+/* Form Alignment */
+.form-group {
+    margin-bottom: 15px; /* Spacing between input blocks */
+}
+
+label {
+    display: block;      /* Forces label to be on its own line above input */
+    margin-bottom: 5px;
+}
+
+input {
+    width: 100%;         /* Forces input to fill the container width */
+    padding: 5px;
+    box-sizing: border-box; /* Ensures padding doesn't break the width */
+}
+
+/* Table Alignment */
+table {
+    width: 100%;
+    border-collapse: collapse; /* Removes double borders */
+    margin-top: 10px;
+}
+
+th, td {
+    border: 1px solid black; /* Basic grid lines */
+    padding: 8px;
+    text-align: left;
+}
+
+/* Button spacing */
+button {
+    margin-top: 10px;
+    padding: 5px 10px;
+}
