@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Multi-Stage Form</title>
+</head>
+<body>
+
+    <h2>User Registration Wizard</h2>
+    
+    <div id="progress-container">
+        <strong>Progress: <span id="progress-text">25%</span></strong>
+        <div style="width: 100%; border: 1px solid black;">
+            <div id="progress-bar" style="width: 25%; height: 10px; background-color: gray;"></div>
+        </div>
+    </div>
+
+    <hr>
+
+    <form id="multi-stage-form">
+        
+        <div id="stage1">
+            <h3>Stage 1: Basic Info</h3>
+            <label>Name:</label>
+            <input type="text" id="name-input">
+            <p id="error1" style="color: red;"></p>
+            <button type="button" onclick="nextStage(1)">Next</button>
+        </div>
+
+        <div id="stage2" style="display: none;">
+            <h3>Stage 2: Account Details</h3>
+            <label>Email:</label>
+            <input type="text" id="email-input">
+            <p id="error2" style="color: red;"></p>
+            <button type="button" onclick="prevStage(2)">Back</button>
+            <button type="button" onclick="nextStage(2)">Next</button>
+        </div>
+
+        <div id="stage3" style="display: none;">
+            <h3>Stage 3: Preferences</h3>
+            <label>Choose a Theme:</label>
+            <select id="theme-input">
+                <option value="">--Select--</option>
+                <option value="Light">Light</option>
+                <option value="Dark">Dark</option>
+            </select>
+            <p id="error3" style="color: red;"></p>
+            <button type="button" onclick="prevStage(3)">Back</button>
+            <button type="button" onclick="nextStage(3)">Next</button>
+        </div>
+
+        <div id="stage4" style="display: none;">
+            <h3>Stage 4: Review</h3>
+            <div id="review-data"></div>
+            <br>
+            <button type="button" onclick="prevStage(4)">Back</button>
+            <button type="button" onclick="submitForm()">Submit</button>
+        </div>
+
+    </form>
+
+    <h2 id="final-msg" style="color: green;"></h2>
+
+    <script src="script.js"></script>
+</body>
+</html>

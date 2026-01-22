@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Activity Monitor</title>
+</head>
+<body>
+
+    <h2>User Activity Monitor</h2>
+    <p>Interact with the elements below to see the log:</p>
+
+    <div id="interaction-area" style="border: 1px solid black; padding: 10px;">
+        <button id="btn1">Click Me</button>
+        <button id="btn2">Click Me Too</button>
+        <br><br>
+        <input type="text" id="user-input" placeholder="Type something...">
+    </div>
+
+    <br>
+    <button onclick="resetLog()">Reset Log</button>
+    <button onclick="exportLog()">Export Log</button>
+
+    <h3 style="color: red;" id="warning-msg"></h3>
+
+    <hr>
+    <h3>Activity Log:</h3>
+    <div id="log-display"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
