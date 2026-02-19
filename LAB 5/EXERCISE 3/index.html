@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Exercise 3 - Student JSON</title>
+</head>
+<body>
+
+<h2>Student Record</h2>
+
+ID: <input type="text" id="id">
+Name: <input type="text" id="name">
+Course: <input type="text" id="course">
+Marks: <input type="text" id="marks">
+<button onclick="addStudent()">Add</button>
+
+<table border="1" id="table"></table>
+
+<script>
+
+let students = [
+{id:1,name:"Arun",course:"CSE",marks:80}
+];
+
+function display(){
+    let table=document.getElementById("table");
+    table.innerHTML="<tr><th>ID</th><th>Name</th><th>Course</th><th>Marks</th><th>Action</th></tr>";
+
+    students.forEach((s,i)=>{
+        table.innerHTML+=
+        "<tr><td>"+s.id+"</td><td>"+s.name+"</td><td>"+s.course+"</td><td>"+s.marks+
+        "</td><td><button onclick='deleteStudent("+i+")'>Delete</button></td></tr>";
+    });
+}
+
+function addStudent(){
+    students.push({
+        id:document.getElementById("id").value,
+        name:document.getElementById("name").value,
+        course:document.getElementById("course").value,
+        marks:document.getElementById("marks").value
+    });
+    display();
+}
+
+function deleteStudent(i){
+    students.splice(i,1);
+    display();
+}
+
+display();
+
+</script>
+
+</body>
+</html>

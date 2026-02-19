@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Exercise 2 - Library XML</title>
+</head>
+<body>
+
+<h2>Library Book Tracker</h2>
+
+ID: <input type="text" id="bid">
+Title: <input type="text" id="title">
+Author: <input type="text" id="author">
+Status: <input type="text" id="status">
+<button onclick="addBook()">Add</button>
+
+<table border="1" id="table"></table>
+
+<script>
+
+let xmlString = `
+<books>
+<book>
+<id>1</id>
+<title>Java</title>
+<author>James</author>
+<status>Available</status>
+</book>
+</books>`;
+
+let parser = new DOMParser();
+let xmlDoc = parser.parseFromString(xmlString, "text/xml");
+
+function displayBooks(){
+    let table = document.getElementById("table");
+    table.innerHTML = "<tr><th>ID</th><th>Title</th><th>Author</th><th>Status</th><th>Action</th></tr>";
+
+    let books = xmlDoc.getElementsByTagName("book");
+
+    for(let i=0;i<books.length;i++){
+        table.innerHTML += "<tr>"+
+        "<td>"+books[i].getElementsByTagName("id")[0].textContent+"</td>"+
+        "<td>"+books[i].getElementsByTagName("title")[0].textContent+"</td>"+
+        "<td>"+books[i].getElementsByTagName("author")[0].textContent+"</td>"+
+        "<td>"+books[i].getElementsByTagName("status")[0].textContent+"</td>"+
+        "<td><button onclick='deleteBook("+i+")'>Delete</button></td>"+
+        "</tr>";
+    }
+}
+
+function addBook(){
+    let book = xmlDoc.createElement("book");
+
+    ["id","title","author","status"].forEach(tag=>{
+        let el = xmlDoc.createElement(tag);
+        el.textContent = document.getElementById(tag==="id"?"bid":tag).value;
+        book.appendChild(el);
+    });
+
+    xmlDoc.documentElement.appendChild(book);
+    displayBooks();
+}
+
+function deleteBook(index){
+    let books = xmlDoc.getElementsByTagName("book");
+    xmlDoc.documentElement.removeChild(books[index]);
+    displayBooks();
+}
+
+displayBooks();
+
+</script>
+
+</body>
+</html>

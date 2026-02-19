@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Exercise 4 - Inventory JSON</title>
+</head>
+<body>
+
+<h2>Product Inventory</h2>
+
+ID:<input id="id">
+Name:<input id="name">
+Category:<input id="category">
+Price:<input id="price">
+Stock:<input id="stock">
+<button onclick="addProduct()">Add</button>
+
+Search Category:<input id="search" onkeyup="searchCategory()">
+
+<table border="1" id="table"></table>
+
+<p>Total Value: <span id="total"></span></p>
+
+<script>
+
+let products=[
+{id:1,name:"Laptop",category:"Electronics",price:50000,stock:5}
+];
+
+function display(list=products){
+    let table=document.getElementById("table");
+    table.innerHTML="<tr><th>ID</th><th>Name</th><th>Category</th><th>Price</th><th>Stock</th><th>Action</th></tr>";
+
+    let total=0;
+
+    list.forEach((p,i)=>{
+        total+=p.price*p.stock;
+
+        table.innerHTML+=
+        "<tr>"+
+        "<td>"+p.id+"</td>"+
+        "<td>"+p.name+"</td>"+
+        "<td>"+p.category+"</td>"+
+        "<td>"+p.price+"</td>"+
+        "<td style='color:"+(p.stock<3?"red":"black")+"'>"+p.stock+"</td>"+
+        "<td><button onclick='deleteProduct("+i+")'>Delete</button></td>"+
+        "</tr>";
+    });
+
+    document.getElementById("total").innerHTML=total;
+}
+
+function addProduct(){
+    products.push({
+        id:id.value,
+        name:name.value,
+        category:category.value,
+        price:parseInt(price.value),
+        stock:parseInt(stock.value)
+    });
+    display();
+}
+
+function deleteProduct(i){
+    products.splice(i,1);
+    display();
+}
+
+function searchCategory(){
+    let q=document.getElementById("search").value.toLowerCase();
+    let filtered=products.filter(p=>p.category.toLowerCase().includes(q));
+    display(filtered);
+}
+
+display();
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Exercise 1 - Employee XML</title>
+</head>
+<body>
+
+<h2>Employee Management</h2>
+
+ID: <input type="text" id="id">
+Name: <input type="text" id="name">
+Dept: <input type="text" id="dept">
+Salary: <input type="text" id="salary">
+<button onclick="addEmployee()">Add</button>
+
+<table border="1" id="table"></table>
+
+<script>
+
+// XML Data
+let xmlString = `
+<employees>
+<employee>
+<id>1</id>
+<name>Ravi</name>
+<dept>CSE</dept>
+<salary>50000</salary>
+</employee>
+</employees>`;
+
+let parser = new DOMParser();
+let xmlDoc = parser.parseFromString(xmlString, "text/xml");
+
+function displayEmployees(){
+    let table = document.getElementById("table");
+    table.innerHTML = "<tr><th>ID</th><th>Name</th><th>Dept</th><th>Salary</th><th>Action</th></tr>";
+
+    let employees = xmlDoc.getElementsByTagName("employee");
+
+    for(let i=0;i<employees.length;i++){
+        table.innerHTML += "<tr>"+
+        "<td>"+employees[i].getElementsByTagName("id")[0].textContent+"</td>"+
+        "<td>"+employees[i].getElementsByTagName("name")[0].textContent+"</td>"+
+        "<td>"+employees[i].getElementsByTagName("dept")[0].textContent+"</td>"+
+        "<td>"+employees[i].getElementsByTagName("salary")[0].textContent+"</td>"+
+        "<td><button onclick='deleteEmployee("+i+")'>Delete</button></td>"+
+        "</tr>";
+    }
+}
+
+function addEmployee(){
+    let employee = xmlDoc.createElement("employee");
+
+    let id = xmlDoc.createElement("id");
+    id.textContent = document.getElementById("id").value;
+
+    let name = xmlDoc.createElement("name");
+    name.textContent = document.getElementById("name").value;
+
+    let dept = xmlDoc.createElement("dept");
+    dept.textContent = document.getElementById("dept").value;
+
+    let salary = xmlDoc.createElement("salary");
+    salary.textContent = document.getElementById("salary").value;
+
+    employee.appendChild(id);
+    employee.appendChild(name);
+    employee.appendChild(dept);
+    employee.appendChild(salary);
+
+    xmlDoc.documentElement.appendChild(employee);
+
+    displayEmployees();
+}
+
+function deleteEmployee(index){
+    let employees = xmlDoc.getElementsByTagName("employee");
+    xmlDoc.documentElement.removeChild(employees[index]);
+    displayEmployees();
+}
+
+displayEmployees();
+
+</script>
+
+</body>
+</html>
