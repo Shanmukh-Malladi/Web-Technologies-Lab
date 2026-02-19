@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Exercise 1</title>
+</head>
+<body>
+
+<h2>Username Availability Checker</h2>
+
+<form id="form">
+Username: <input type="text" id="username">
+<span id="message"></span>
+<br><br>
+<button type="submit">Submit</button>
+</form>
+
+<script>
+
+let userData = {
+    "users": ["john", "ravi", "admin", "kiran"]
+};
+
+let usernameInput = document.getElementById("username");
+let message = document.getElementById("message");
+let form = document.getElementById("form");
+
+usernameInput.addEventListener("keyup", function(){
+
+    let username = usernameInput.value.toLowerCase();
+    message.innerHTML = "Checking...";
+
+    setTimeout(() => {
+
+        if(userData.users.includes(username)){
+            message.innerHTML = "Username already taken";
+            message.style.color = "red";
+            form.dataset.valid = "false";
+        } else {
+            message.innerHTML = "Username available";
+            message.style.color = "green";
+            form.dataset.valid = "true";
+        }
+
+    }, 500);
+
+});
+
+form.addEventListener("submit", function(e){
+    if(form.dataset.valid !== "true"){
+        e.preventDefault();
+        alert("Username not available");
+    }
+});
+
+</script>
+
+</body>
+</html>

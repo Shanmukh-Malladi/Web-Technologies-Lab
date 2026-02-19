@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Student CRUD</title>
+</head>
+<body>
+
+<h2>Student Management</h2>
+
+ID: <input type="text" id="id">
+Name: <input type="text" id="name">
+Dept: <input type="text" id="dept">
+Marks: <input type="text" id="marks">
+<button onclick="addStudent()">Add</button>
+
+<table border="1" id="table">
+<tr>
+<th>ID</th>
+<th>Name</th>
+<th>Dept</th>
+<th>Marks</th>
+<th>Action</th>
+</tr>
+</table>
+
+<script>
+let students = [];
+
+function addStudent(){
+    let id = document.getElementById("id").value;
+    let name = document.getElementById("name").value;
+    let dept = document.getElementById("dept").value;
+    let marks = document.getElementById("marks").value;
+
+    let student = {id, name, dept, marks};
+
+    students.push(student);
+    displayStudents();
+}
+
+function displayStudents(){
+    let table = document.getElementById("table");
+    table.innerHTML = `
+    <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Dept</th>
+    <th>Marks</th>
+    <th>Action</th>
+    </tr>`;
+
+    students.forEach((s, index) => {
+        table.innerHTML += `
+        <tr>
+        <td>${s.id}</td>
+        <td>${s.name}</td>
+        <td>${s.dept}</td>
+        <td>${s.marks}</td>
+        <td>
+        <button onclick="deleteStudent(${index})">Delete</button>
+        </td>
+        </tr>`;
+    });
+}
+
+function deleteStudent(index){
+    students.splice(index,1);
+    displayStudents();
+}
+</script>
+
+</body>
+</html>

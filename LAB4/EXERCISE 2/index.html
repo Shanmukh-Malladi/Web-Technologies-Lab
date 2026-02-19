@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Exercise 2</title>
+</head>
+<body>
+
+<h2>Product Search</h2>
+
+Search: <input type="text" id="search">
+<div id="results"></div>
+
+<script>
+
+
+let productData = {
+    "products": [
+        {"name":"Laptop","price":50000,"category":"Electronics"},
+        {"name":"Phone","price":20000,"category":"Electronics"},
+        {"name":"Shoes","price":3000,"category":"Fashion"}
+    ]
+};
+
+let searchInput = document.getElementById("search");
+let resultsDiv = document.getElementById("results");
+let timer;
+
+searchInput.addEventListener("keyup", function(){
+
+    clearTimeout(timer);
+
+    timer = setTimeout(() => {
+
+        let query = searchInput.value.toLowerCase();
+        resultsDiv.innerHTML = "";
+
+        let filtered = productData.products.filter(p =>
+            p.name.toLowerCase().includes(query)
+        );
+
+        if(filtered.length === 0){
+            resultsDiv.innerHTML = "No results found";
+            return;
+        }
+
+        filtered.forEach(p => {
+            resultsDiv.innerHTML +=
+            "<p>Name: "+p.name+
+            " | Price: "+p.price+
+            " | Category: "+p.category+"</p>";
+        });
+
+    }, 500);
+
+});
+
+</script>
+
+</body>
+</html>
